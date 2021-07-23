@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="grey2">#656565</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#888888</color>
+    <color name="appColor">#FFE57F</color>
+    <color name="light_card_bg">#FAFAFA</color>
+
+
+</resources>
