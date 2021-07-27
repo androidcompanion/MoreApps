@@ -26,6 +26,7 @@ import com.moreapps.models.MoreappsAdapter;
 import com.moreapps.utils.MoreAppsConstant;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -35,7 +36,7 @@ public class ShowMoreAppsLinear {
     Context context;
     String theme;
     RecyclerView rvapps;
-    ShimmerFrameLayout shimmerGrid,shimmerLinear;
+    ShimmerFrameLayout shimmerGrid, shimmerLinear;
     TextView tv_seemore;
     LinearLayout ll_moreApps;
     LinearLayout moreView;
@@ -44,40 +45,60 @@ public class ShowMoreAppsLinear {
     public static int appNameTextColor = 0;
     public static Drawable adBackground = null;
     public static Drawable installButtonBackground = null;
+    public static Drawable rvBackground = null;
+    public static Drawable itemBackground = null;
+    List<AppsDetails> appsDetailsArrayList;
 
-    public ShowMoreAppsLinear(Context context, String theme, ViewGroup view){
-        this.context  = context;
-        this.theme =  theme;
+    public ShowMoreAppsLinear(Context context, String theme, ViewGroup view) {
+        this.context = context;
+        this.theme = theme;
         this.view = view;
         LayoutInflater inflater = LayoutInflater.from(context);
-        moreView = (LinearLayout) inflater.inflate(R.layout.layout_more_apps,view, false);
+        moreView = (LinearLayout) inflater.inflate(R.layout.layout_more_apps, view, false);
         showMore(view);
-        if (theme.equals("light")){
+        if (theme.equals("light")) {
             MoreAppsConstant.isLightTheme = true;
-        }else {
+        } else {
             MoreAppsConstant.isLightTheme = false;
         }
 
     }
 
-    public void setSeeMoreButtonBackground(Drawable drawable){
-        tv_seemore.setBackground(drawable);
+    public void setRvBackground(Drawable drawable) {
+        if (drawable != null) {
+            rvapps.setBackground(rvBackground);
+        }
     }
-    public void setSeeMoreButtonTextColor(int color){
+
+    public void setSeeMoreButtonBackground(Drawable drawable) {
+        if (drawable != null) {
+            tv_seemore.setBackground(drawable);
+        }
+    }
+
+    public void setItemBackground(Drawable drawable) {
+        if (drawable != null) {
+            itemBackground = drawable;
+        }
+    }
+
+    public void setSeeMoreButtonTextColor(int color) {
         tv_seemore.setTextColor(color);
     }
 
-    public void setAdbackground(Drawable drawable){
+    public void setAdbackground(Drawable drawable) {
         adBackground = drawable;
     }
-    public void setInstallButtonBackground(Drawable drawable){
+
+    public void setInstallButtonBackground(Drawable drawable) {
         installButtonBackground = drawable;
     }
 
-    public void setInstallButtonTextColor(int color){
+    public void setInstallButtonTextColor(int color) {
         installTextColor = color;
     }
-    public void setAppNameTextColor(int color){
+
+    public void setAppNameTextColor(int color) {
         appNameTextColor = color;
     }
 
@@ -97,7 +118,11 @@ public class ShowMoreAppsLinear {
         return appNameTextColor;
     }
 
-    public void showMore(ViewGroup view){
+    public static Drawable getItemBackground() {
+        return itemBackground;
+    }
+
+    public void showMore(ViewGroup view) {
         view.addView(moreView);
         tv_seemore = moreView.findViewById(R.id.tv_seemore);
         ll_moreApps = moreView.findViewById(R.id.ll_moreApps);
@@ -126,8 +151,10 @@ public class ShowMoreAppsLinear {
                     shimmerGrid.setVisibility(View.GONE);
                     shimmerLinear.setVisibility(View.GONE);
                     rvapps.setVisibility(View.VISIBLE);
-                    MoreappsAdapter adapter = new MoreappsAdapter(context, moreApps.getAppsDetailsList(),"linear",theme, getAppNameTextColor(), getInstallButtonBackground(), getInstallTextColor(), getAdBackground());
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false);
+                    appsDetailsArrayList = new ArrayList<>();
+                    appsDetailsArrayList = moreApps.getAppsDetailsList();
+                    MoreappsAdapter adapter = new MoreappsAdapter(context, appsDetailsArrayList, "linear", theme, getAppNameTextColor(), getInstallButtonBackground(), getInstallTextColor(), getAdBackground(), getItemBackground());
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
                     rvapps.setLayoutManager(layoutManager);
                     rvapps.setItemAnimator(new DefaultItemAnimator());
                     rvapps.setAdapter(adapter);
@@ -159,7 +186,7 @@ public class ShowMoreAppsLinear {
                             }
                         }
                     }
-                }else {
+                } else {
                     shimmerGrid.setVisibility(View.VISIBLE);
                     shimmerLinear.setVisibility(View.GONE);
                     rvapps.setVisibility(View.GONE);

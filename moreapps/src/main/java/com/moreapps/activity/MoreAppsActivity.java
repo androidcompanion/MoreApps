@@ -29,12 +29,13 @@ import static com.moreapps.CallIt.ShowMoreAppsGrid.getAdBackground;
 import static com.moreapps.CallIt.ShowMoreAppsGrid.getAppNameTextColor;
 import static com.moreapps.CallIt.ShowMoreAppsGrid.getInstallButtonBackground;
 import static com.moreapps.CallIt.ShowMoreAppsGrid.getInstallTextColor;
+import static com.moreapps.CallIt.ShowMoreAppsGrid.getItemBackground;
 
 public class MoreAppsActivity extends AppCompatActivity implements CategoryWiseApps {
 
 
-    RecyclerView rv_category,rv_subcategory;
-    ShimmerFrameLayout shimmerLinear,shimmerGrid;
+    RecyclerView rv_category, rv_subcategory;
+    ShimmerFrameLayout shimmerLinear, shimmerGrid;
 
     public static int installTextColor = 0;
     public static int appNameTextColor = 0;
@@ -65,12 +66,12 @@ public class MoreAppsActivity extends AppCompatActivity implements CategoryWiseA
         lay_moreapps = findViewById(R.id.lay_moreapps);
 
 
-        if (MoreAppsConstant.isLightTheme){
+        if (MoreAppsConstant.isLightTheme) {
             setCategory("light");
             lay_toolbar_moreapps.setBackgroundColor(Color.WHITE);
             tv_title_moreapps.setTextColor(Color.BLACK);
             lay_moreapps.setBackgroundColor(Color.WHITE);
-        }else {
+        } else {
             setCategory("dark");
             lay_toolbar_moreapps.setBackgroundColor(Color.BLACK);
             tv_title_moreapps.setTextColor(Color.WHITE);
@@ -90,20 +91,20 @@ public class MoreAppsActivity extends AppCompatActivity implements CategoryWiseA
                 shimmerLinear.setVisibility(View.GONE);
                 shimmerGrid.setVisibility(View.GONE);
                 rv_category.setVisibility(View.VISIBLE);
-                AppsCategoryAdapter adapter = new AppsCategoryAdapter(MoreAppsActivity.this, MoreAppsConstant.category,theme);
-                LinearLayoutManager layoutManager = new LinearLayoutManager(MoreAppsActivity.this, RecyclerView.HORIZONTAL,false);
+                AppsCategoryAdapter adapter = new AppsCategoryAdapter(MoreAppsActivity.this, MoreAppsConstant.category, theme);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(MoreAppsActivity.this, RecyclerView.HORIZONTAL, false);
                 rv_category.setLayoutManager(layoutManager);
                 rv_category.setItemAnimator(new DefaultItemAnimator());
                 rv_category.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
-        },1500);
+        }, 1500);
     }
 
     @Override
     public void subcategoryApps(ArrayList<AppsDetails> subcategoryList, String theme) {
-        MoreappsAdapter adapter = new MoreappsAdapter(MoreAppsActivity.this, subcategoryList,"grid",theme, getAppNameTextColor(), getInstallButtonBackground(), getInstallTextColor(), getAdBackground());
-        LinearLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),3);
+        MoreappsAdapter adapter = new MoreappsAdapter(MoreAppsActivity.this, subcategoryList, "grid", theme, getAppNameTextColor(), getInstallButtonBackground(), getInstallTextColor(), getAdBackground(), getItemBackground());
+        LinearLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
         rv_subcategory.setLayoutManager(layoutManager);
         rv_subcategory.setItemAnimator(new DefaultItemAnimator());
         rv_subcategory.setAdapter(adapter);
