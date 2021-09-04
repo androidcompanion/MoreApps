@@ -46,11 +46,11 @@ public class MoreAppsActivity extends AppCompatActivity implements CategoryWiseA
     TextView tv_title_moreapps;
     LinearLayout lay_moreapps;
 
-    public class OnlyMoreApps {
-        public OnlyMoreApps(int installTextColor, int appNameTextColor, Drawable adIcon, Drawable installButtonBackground ){
-            this.installTextColor
-        }
-    }
+//    public class OnlyMoreApps {
+//        public OnlyMoreApps(int installTextColor, int appNameTextColor, Drawable adIcon, Drawable installButtonBackground ){
+//            this.installTextColor
+//        }
+//    }
 
 
     @Override
