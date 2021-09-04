@@ -2,7 +2,7 @@
 <resources>
     <color name="grey2">#656565</color>
     <color name="black">#FF000000</color>
-    <color name="white">#888888</color>
+    <color name="white">#FFFFFF</color>
     <color name="appColor">#FFE57F</color>
     <color name="light_card_bg">#FAFAFA</color>
 
