@@ -164,14 +164,15 @@ public class ShowMoreAppsGrid {
                     rvapps.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
+                    MoreAppsConstant.category.clear();
                     for (int i = 0; i < moreApps.getAppsDetailsList().size(); i++) {
                         if (!checkCategory(MoreAppsConstant.category, moreApps.getAppsDetailsList().get(i).getCategory())) {
                             MoreAppsConstant.category.add(moreApps.getAppsDetailsList().get(i).getCategory());
                         }
                     }
-
+                    ArrayList<AppsDetails> arrayList = new ArrayList();
+                    MoreAppsConstant.arraylist.clear();
                     for (int i = 0; i < MoreAppsConstant.category.size(); i++) {
-                        ArrayList<AppsDetails> arrayList = new ArrayList();
                         MoreAppsConstant.arraylist.add(arrayList);
                     }
 
